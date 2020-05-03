@@ -1,0 +1,32 @@
+service: mbo-line-bot
+
+provider:
+  name: aws
+  runtime: python3.7
+  environment: 
+    LINE_CHANNEL_ACCESS_TOKEN: ${env:LINE_CHANNEL_ACCESS_TOKEN}
+    LINE_CHANNEL_SECRET: ${env:LINE_CHANNEL_SECRET}
+    AWS_ACCESS_KEY_ID: ${env:AWS_ACCESS_KEY_ID}
+    AWS_SECRET_ACCESS_KEY: ${env:AWS_SECRET_ACCESS_KEY}
+
+iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - dynamodb:DescribeTable
+      - dynamodb:Query
+      - dynamodb:Scan
+      - dynamodb:GetItem
+      - dynamodb:PutItem
+    Resource: ${env:DYNAMODB_URL}
+
+functions:
+  line_bot:
+    handler: handler.webhook
+    events:
+      - http:
+          path: /webhook
+          method: POST
+
+plugins:
+  - serverless-python-requirements
+  - serverless-dotenv-plugin
