@@ -15,8 +15,6 @@
   <p align="center">
     A LINE Bot to help you do managements by objects
     <br />
-    <a href="https://github.com/github_username/repo"><strong>Explore the docs »</strong></a>
-    <br />
     <br />
     <a href="https://github.com/dextermallo/MBO-Line-Bot/issues">Report Bug</a>
     ·
@@ -27,11 +25,11 @@
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
+[stars-shield]: https://img.shields.io/github/stars/dextermallo/MBO-Line-Bot.svg?style=flat-square
 [stars-url]: https://github.com/dextermallo/MBO-Line-Bot/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
+[issues-shield]: https://img.shields.io/github/issues/dextermallo/MBO-Line-Bot.svg?style=flat-square
 [issues-url]: https://github.com/dextermallo/MBO-Line-Bot/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
+[license-shield]: https://img.shields.io/github/license/dextermallo/MBO-Line-Bot.svg?style=flat-square
 [license-url]: https://github.com/dextermallo/MBO-Line-Bot/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/yong-shan-chang-904561159/
