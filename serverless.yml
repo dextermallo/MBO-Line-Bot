@@ -6,8 +6,6 @@ provider:
   environment: 
     LINE_CHANNEL_ACCESS_TOKEN: ${env:LINE_CHANNEL_ACCESS_TOKEN}
     LINE_CHANNEL_SECRET: ${env:LINE_CHANNEL_SECRET}
-    AWS_ACCESS_KEY_ID: ${env:AWS_ACCESS_KEY_ID}
-    AWS_SECRET_ACCESS_KEY: ${env:AWS_SECRET_ACCESS_KEY}
 
 iamRoleStatements:
   - Effect: Allow
@@ -26,6 +24,12 @@ functions:
       - http:
           path: /webhook
           method: POST
+
+package:
+  exclude:
+    - node_modules/**
+    - images/**
+    - README.md
 
 plugins:
   - serverless-python-requirements
