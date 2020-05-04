@@ -55,8 +55,8 @@ def reply_message_handler(message_formatter, user_info, line_bot_api, token):
         try:
             daily_goals = split_goals(message_formatter['lines'])
             post_tomorrow_goals(daily_goals, user_info)
-            text = '嗨{user_display_name}！\n收到你的明天目標囉'.format(**user_info)
-            line_bot_api.reply_message(token, TextSendMessage(text=text))
+            # text = '嗨{user_display_name}！\n收到你的明天目標囉😁'.format(**user_info)
+            # line_bot_api.reply_message(token, TextSendMessage(text=text))
         except Exception as e:
             error_class = e.__class__.__name__  # 取得錯誤類型
             detail = e.args[0]  # 取得詳細內容
@@ -90,16 +90,16 @@ def reply_message_handler(message_formatter, user_info, line_bot_api, token):
         try:
             finished_task_orders = message_formatter['lines'][1]
             finished_task_orders = [int(order) for order in finished_task_orders.split()]
-            msg = 'Congrats! 你完成了🎉\n'
+            msg = 'Congrats!🎉你完成了🎉\n'
 
             for order in finished_task_orders:
                 resp = database.set_today_task(user_info['user_id'], order)
-                if resp['exists'] is True:
-                    msg += '{description}\n'.format(**resp)
-                else:
-                    msg += '今日目標 {order}不存在耶！\n'
-            msg.rstrip()
-            line_bot_api.reply_message(token, TextSendMessage(text=msg))
+            #     if resp['exists'] is True:
+            #         msg += '{description}\n'.format(**resp)
+            #     else:
+            #         msg += '今日目標 {order}不存在耶！\n'
+            # msg.rstrip()
+            # line_bot_api.reply_message(token, TextSendMessage(text=msg))
 
         except Exception as e:
             err_msg = '好像哪裡怪怪的哦！請聯繫 Dexter'
