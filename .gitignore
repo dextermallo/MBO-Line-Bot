@@ -31,3 +31,6 @@ __pycache__
 # env
 .vscode
 .env
+
+# others
+.DS_Store
