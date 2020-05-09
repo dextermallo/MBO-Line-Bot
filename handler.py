@@ -4,9 +4,14 @@ from linebot import LineBotApi
 import os
 
 import linebot_helper
+import libs.line_bot.group as lb_group
 
 
 def webhook(event, context):
+    """
+    webhook handler for LINE bot.
+    """
+
     channel_access_token = os.environ['LINE_CHANNEL_ACCESS_TOKEN']
 
     line_bot_api = LineBotApi(channel_access_token)
@@ -14,7 +19,6 @@ def webhook(event, context):
     msg = json.loads(event['body'])
 
     for event in msg['events']:
-
         if event['type'] == 'join':
             token = event['replyToken']
             linebot_helper.reply_join_message(line_bot_api, token)
@@ -28,8 +32,7 @@ def webhook(event, context):
             )
 
             message = event['message']['text']
-            print(profile.text)
-            print(profile)
+
             user_info = {
                 'user_id': user_id,
                 'user_display_name': eval(profile.text)['displayName'],

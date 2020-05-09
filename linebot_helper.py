@@ -1,7 +1,7 @@
 from linebot.models import TextSendMessage
 
 import database
-from models import Daily_task
+from models import Daily_task, Reply_loader
 
 INVAILD_MESSAGE = '您輸入的功能不存在耶！\n 請檢查有沒有輸入錯誤，\n或輸入 "# help" 查看功能集。'
 JOIN_MESSAGE = '嗨！我是目標管理の工具人(`・ω・´)，\n請輸入 "# help" 查看功能集，\n或聯絡開發者 Dexter'
@@ -46,7 +46,8 @@ def message_contain_service(message, line_bot_api, token):
 
 
 def reply_message_handler(message_formatter, user_info, line_bot_api, token):
-
+    reply = Reply_loader()
+    print(reply.data['task']['done'])
     method = message_formatter['method']
 
     if method == '指令集':
