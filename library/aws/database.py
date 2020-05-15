@@ -13,7 +13,6 @@ def db():
 
 
 def post_daily_task(daily_task):
-
     table = db().Table('daily_task')
     table.put_item(Item=daily_task.to_dict())
 

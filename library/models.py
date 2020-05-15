@@ -3,7 +3,8 @@ import uuid
 import json
 
 
-class Daily_task():
+# daily task
+class DailyTask():
 
     daily_task_id: str
     user_display_name: str
@@ -38,7 +39,8 @@ class Daily_task():
         }
 
 
-class Reply_loader():
+# Loader for reply message.
+class ReplyLoader():
     data: json
 
     def __init__(self):
