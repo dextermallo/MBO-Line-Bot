@@ -1,8 +1,10 @@
 import datetime
 import uuid
+import json
 
 
-class Daily_task():
+# daily task
+class DailyTask():
 
     daily_task_id: str
     user_display_name: str
@@ -35,3 +37,12 @@ class Daily_task():
             'order': self.order,
             'description': self.description
         }
+
+
+# Loader for reply message.
+class ReplyLoader():
+    data: json
+
+    def __init__(self):
+        with open('res/config.json') as config_file:
+            self.data = json.load(config_file)

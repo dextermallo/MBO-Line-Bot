@@ -1,13 +1,10 @@
-import os
 import boto3
 from boto3.dynamodb.conditions import Key
 
-from models import Daily_task
 from utils import get_today
 
 
 def db():
-
     dynamodb = boto3.resource(
         'dynamodb',
         region_name='us-east-1'
@@ -16,12 +13,7 @@ def db():
 
 
 def post_daily_task(daily_task):
-
-    dynamodb = boto3.resource(
-        'dynamodb',
-        region_name='us-east-1',
-    )
-    table = dynamodb.Table('daily_task')
+    table = db().Table('daily_task')
     table.put_item(Item=daily_task.to_dict())
 
 
