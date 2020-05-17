@@ -4,7 +4,7 @@ import json
 
 
 # daily task
-class DailyTask():
+class DailyTask:
 
     daily_task_id: str
     user_display_name: str
@@ -23,7 +23,7 @@ class DailyTask():
         self.user_display_name = user_display_name
         self.user_id = user_id
         self.date = f'{now.year}/{now.month}/{now.day}'
-        self.status = 'to-do'
+        self.status = 'todo'
         self.order = order
         self.description = description
 
@@ -40,7 +40,7 @@ class DailyTask():
 
 
 # Loader for reply message.
-class ReplyLoader():
+class ReplyLoader:
     data: json
 
     def __init__(self):
