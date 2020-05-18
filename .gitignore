@@ -31,3 +31,7 @@ __pycache__
 # env
 .vscode
 .env
+
+# others
+.DS_Store
+/script/local_dev_booster.sh
