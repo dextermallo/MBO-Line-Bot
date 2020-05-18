@@ -1,7 +1,6 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -100,5 +99,3 @@
 [issues-url]: https://github.com/dextermallo/MBO-Line-Bot/issues
 [license-shield]: https://img.shields.io/github/license/dextermallo/MBO-Line-Bot.svg?style=flat-square
 [license-url]: https://github.com/dextermallo/MBO-Line-Bot/blob/master/LICENSE
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/in/yong-shan-chang-904561159/
