@@ -13,7 +13,7 @@
             "join": "嗨！我是目標管理の工具人(`・ω・´)，\n請輸入 'help 查看功能集，\n或聯絡開發者 Dexter",
 
             "err": {
-                "wrong_fotmatting": "輸入格式錯誤"
+                "wrong_formatting": "輸入格式錯誤"
             }
         }
     },
