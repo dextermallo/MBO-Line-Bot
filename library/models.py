@@ -19,7 +19,7 @@ class DailyTask:
         # default to tomorrow
         now = datetime.datetime.now() + datetime.timedelta(days=1)
 
-        self. daily_task_id = str(uuid.uuid1())
+        self.daily_task_id = str(uuid.uuid1())
         self.user_display_name = user_display_name
         self.user_id = user_id
         self.date = f'{now.year}/{now.month}/{now.day}'
