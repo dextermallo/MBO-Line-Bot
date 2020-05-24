@@ -15,7 +15,7 @@ iamRoleStatements:
       - dynamodb:Scan
       - dynamodb:GetItem
       - dynamodb:PutItem
-    Resource: ${env:DYNAMODB_URL}
+    Resource: ${env:DYNAMODB_ARN}
 
 functions:
   line_bot:

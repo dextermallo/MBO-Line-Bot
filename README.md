@@ -52,7 +52,7 @@
 <i>(Channel Secret)</i>
 </p>
 
-3. Create a dynamoDB in AWS: Remember your **url**
+3. Create a dynamoDB in AWS: Remember your **ARN**
 
 ![Alt text](/images/readme/04.png "ARN")
 
@@ -64,7 +64,7 @@
   ```markdown
     LINE_CHANNEL_ACCESS_TOKEN=<Your LINE Channel Access Token>
     LINE_CHANNEL_SECRET=<Your LINE Channel Secret>
-    DYNAMODB_URL=<Your DyanmoDB URL>
+    DYNAMODB_ARN=<Your DyanmoDB ARN>
   ```
 
   or you can also run script below:
@@ -82,7 +82,7 @@
   $sls deploy
 ```
 
-7. Set your LINE Bot Webhook url
+7. Set your LINE Bot Webhook
 
 ![Alt text](/images/readme/03.png "Webhook")
 
