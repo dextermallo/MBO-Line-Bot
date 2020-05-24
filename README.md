@@ -64,7 +64,7 @@
   ```markdown
     LINE_CHANNEL_ACCESS_TOKEN=<Your LINE Channel Access Token>
     LINE_CHANNEL_SECRET=<Your LINE Channel Secret>
-    DYNAMODB_ARN=<Your DyanmoDB ARN>
+    DYNAMODB_ARN=<Your DynamoDB ARN>
   ```
 
   or you can also run script below:
