@@ -12,11 +12,6 @@ def db():
     return dynamodb
 
 
-def post_daily_task(daily_task):
-    table = db().Table('daily_task')
-    table.put_item(Item=daily_task.to_dict())
-
-
 def get_today_task(user_id):
     table = db().Table('daily_task')
 

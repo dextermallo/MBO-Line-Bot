@@ -61,11 +61,12 @@ class UserMessage(LINEMessage):
             for sub_str in self.message.split('\n')[1:]:
                 task = {
                     'order': int(sub_str[:sub_str.find('.')]),
-                    'task_name': remove_leading_and_trailing_whitespace(sub_str[sub_str.find('.')+1:])
+                    'description': remove_leading_and_trailing_whitespace(sub_str[sub_str.find('.')+1:])
                 }
 
                 self.clean_msg.append(task)
         elif self.message_type == '完成':
+            self.clean_msg = []
             for sub_str in self.message.split('\n')[1:]:
                 task = {
                     'order': int(sub_str[:sub_str.find('.')]),

@@ -2,8 +2,10 @@ import datetime
 import uuid
 import json
 
+from .line_bot.models import UserMessage
+from .aws.database import db
 
-# daily task
+
 class DailyTask:
 
     daily_task_id: str
@@ -38,8 +40,47 @@ class DailyTask:
             'description': self.description
         }
 
+    def save(self):
+        table = db().Table('daily_task')
+        table.put_item(Item=self.to_dict())
 
-# Loader for reply message.
+
+class DailyTaskSummary:
+    daily_task: list
+    user_id: str
+
+    def __init__(self):
+        self.daily_task = []
+        self.user_id = ''
+
+    def save(self, message: UserMessage):
+
+        daily_task = []
+
+        for msg in message.clean_msg:
+
+            task = DailyTask(
+                user_display_name=message.user_display_name,
+                user_id=message.user_id,
+                order=msg['order'],
+                description=msg['description']
+            )
+
+            task.save()
+            daily_task.append(task)
+
+        self.daily_task = daily_task
+
+    def on_create_msg(self):
+
+        ret = '紀錄成功😎\n明天目標如下：\n'
+        for task in self.daily_task:
+            ret += '{order}: {description}\n'.format(**task.to_dict())
+
+        return ret.rstrip('\n')
+
+
+# Loader for message to reply user.
 class ReplyLoader:
     data: json
 

@@ -11,7 +11,63 @@
             "明天目標", "確認", "完成"],
         "response": {
             "join": "嗨！我是目標管理の工具人(`・ω・´)，\n請輸入 'help 查看功能集，\n或聯絡開發者 Dexter",
-
+            "daily_progress": {
+                "type": "bubble",
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "Are you sure?",
+                            "margin": "md"
+                        },
+                        {
+                            "type": "spacer"
+                        }
+                    ],
+                    "action": {
+                        "type": "uri",
+                        "label": "View detail",
+                        "uri": "http://linecorp.com/",
+                        "altUri": {
+                            "desktop": "http://example.com/page/123"
+                        }
+                    }
+                },
+                "footer": {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "spacing": "sm",
+                        "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                    "type": "message",
+                                    "label": "Yes",
+                                    "text": "yes"
+                                },
+                                "height": "sm"
+                            },
+                            {
+                                "type": "button",
+                                "action": {
+                                    "type": "message",
+                                    "label": "No",
+                                    "text": "no"
+                                },
+                                "height": "sm"
+                            }
+                        ],
+                    "flex": 0
+                },
+                "styles": {
+                    "footer": {
+                        "separator": "True"
+                    }
+                }
+            },
+            
             "err": {
                 "wrong_formatting": "輸入格式錯誤"
             }
