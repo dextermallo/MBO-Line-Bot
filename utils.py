@@ -1,3 +1,4 @@
+import re
 import datetime
 
 
@@ -18,3 +19,7 @@ def split_text_to_orders(s, start_line=0):
             'description': s[idx][3:],
         })
     return orders
+
+
+def remove_leading_and_trailing_whitespace(s):
+    return re.sub(r"^\s+|\s+$", "", s)

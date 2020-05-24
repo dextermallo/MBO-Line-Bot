@@ -1,4 +1,4 @@
-service: mbo-line-bot
+service: mbo-line-bot-v2
 
 provider:
   name: aws

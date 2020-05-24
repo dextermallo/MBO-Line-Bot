@@ -1,62 +1,24 @@
 import os
 import requests
+import abc
 
-from library.models import ReplyLoader
-from utils import get_str_first_line
+from utils import get_str_first_line, remove_leading_and_trailing_whitespace
 
 
-class Message:
-
-    group_id: str
+class LINEMessage(metaclass=abc.ABCMeta):
     user_id: str
-    is_group_msg: bool
     message: str
-    message_type: str
     reply_token: str
     timestamp: str
     user_display_name: str
 
-    clean_msg: [dict]
+    @abc.abstractmethod
+    def identify_msg_type(self, msg):
+        return NotImplemented
 
-    # decompose from LINE event.
-    def __init__(self, line_event):
-
-        if line_event['source']['type'] == 'user':
-            self.group_id = None
-            self.user_id = line_event['source']['userId']
-            self.is_group_msg = False
-            self.message = line_event['message']['text']
-            self.message_type = self.identify_msg_type(
-                line_event['message']['text'])
-            self.reply_token = line_event['replyToken']
-            self.timestamp = line_event['timestamp']
-            self.user_display_name = self.get_user_display_name()
-            self.msg_cleaner()
-
-        elif line_event['source']['type'] == 'group':
-            self.group_id = line_event['source']['groupId']
-            self.user_id = line_event['source']['userId']
-            self.is_group_msg = True
-            self.message = line_event['message']['text']
-            self.message_type = self.identify_msg_type(
-                line_event['message']['text'])
-            self.reply_token = line_event['replyToken']
-            self.timestamp = line_event['timestamp']
-            self.user_display_name = self.get_user_display_name()
-            self.msg_cleaner()
-
-    @staticmethod
-    def identify_msg_type(msg):
-        loader = ReplyLoader()
-        if get_str_first_line(msg) in loader.data['user']['methods']:
-            return get_str_first_line(msg)
-        return None
-
+    @abc.abstractmethod
     def msg_cleaner(self):
-        if self.message_type == '本月獎勵':
-            self.clean_msg = [{'1': 'test'}]
-        else:
-            self.clean_msg = [{'2': 'test2'}]
+        return NotImplemented
 
     def get_user_display_name(self):
 
@@ -70,15 +32,59 @@ class Message:
 
         self.user_display_name = eval(profile.text)['displayName']
 
+    @abc.abstractmethod
+    def to_dict(self):
+        return NotImplemented
+
+
+class UserMessage(LINEMessage):
+    message_type: str
+    clean_msg: []
+
+    def __init__(self, event):
+        self.user_id = event['source']['userId']
+        self.message = event['message']['text']
+        self.reply_token = event['replyToken']
+        self.timestamp = event['timestamp']
+        self.get_user_display_name()
+        self.identify_msg_type()
+        self.msg_cleaner()
+
+    def identify_msg_type(self):
+        self.message_type = get_str_first_line(self.message)
+
+    def msg_cleaner(self):
+        if self.message_type == 'help':
+            self.clean_msg = [{'1': 'test'}]
+        elif self.message_type == '明天目標':
+            self.clean_msg = []
+            for sub_str in self.message.split('\n')[1:]:
+                task = {
+                    'order': int(sub_str[:sub_str.find('.')]),
+                    'task_name': remove_leading_and_trailing_whitespace(sub_str[sub_str.find('.')+1:])
+                }
+
+                self.clean_msg.append(task)
+        elif self.message_type == '完成':
+            for sub_str in self.message.split('\n')[1:]:
+                task = {
+                    'order': int(sub_str[:sub_str.find('.')]),
+                    'task_name': remove_leading_and_trailing_whitespace(sub_str[sub_str.find('.')+1:])
+                }
+
+                self.clean_msg.append(task)
+        else:
+            self.clean_msg = None
+
     def to_dict(self):
         return {
-            'group_id': self.group_id,
+            # Inherit
             'user_id': self.user_id,
-            'is_group_msg': self.is_group_msg,
             'message': self.message,
-            'message_type': self.message_type,
             'reply_token': self.reply_token,
             'timestamp': self.timestamp,
             'user_display_name': self.user_display_name,
+            # Extension
+            'message_type': self.message_type,
             'clean_msg': self.clean_msg,
         }
