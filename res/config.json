@@ -71,6 +71,18 @@
             "err": {
                 "wrong_formatting": "輸入格式錯誤"
             }
+        },
+        "test_flex_message": {
+            "type": "bubble",
+            "direction": "ltr",
+            "hero": {
+                "type": "image",
+                "url": "https://i.imgur.com/3d370gx.png",
+                "align": "center",
+                "gravity": "center",
+                "size": "full",
+                "aspectMode": "fit"
+            }
         }
     },
 

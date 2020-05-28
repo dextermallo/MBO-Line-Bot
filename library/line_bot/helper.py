@@ -36,7 +36,7 @@ def user_message_handler(message):
         reply_loader = ReplyLoader()
         msg = FlexSendMessage(
             alt_text='hello',
-            contents=reply_loader.data['user']['response']['daily_progress']
+            contents=reply_loader.data['user']['test_flex_message']
         )
         reply_msg(message.reply_token, msg)
 
